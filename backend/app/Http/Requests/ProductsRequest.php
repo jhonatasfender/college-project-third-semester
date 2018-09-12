@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Carbon\Carbon;
+use Illuminate\Foundation\Http\FormRequest;
 
 class ProductsRequest extends FormRequest
 {
@@ -29,7 +29,7 @@ class ProductsRequest extends FormRequest
             'name' => 'required',
             'price' => "required|regex:/^\d*(\.\d{2})?$/",
             'categories' => 'required',
-            'expiration_date' => 'required|date_format:d/m/Y|after:'. $today,
+            'expiration_date' => 'required|date_format:d/m/Y|after:' . $today,
             'description' => 'required',
         ];
     }
@@ -43,12 +43,12 @@ class ProductsRequest extends FormRequest
     {
         return [
             'name.required' => 'O campo nome do produto é obrigatorio',
-            
+
             'price.required' => 'O campo preço do produto é obrigatorio',
             'price.regex' => 'Atenção esse valor digitado não é valido',
-            
+
             'categories.required' => 'O campo categorias do produto é obrigatorio',
-            
+
             'expiration_date.required' => 'O campo data de expiração é obrigatorio',
             'expiration_date.date_format' => 'O formato não é compativel com DD/MM/AAAA',
             'expiration_date.date_format' => 'O campo data de expiração deve ser uma data posterior a :date.',
