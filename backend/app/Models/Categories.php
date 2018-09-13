@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Products;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Classe mapeada do banco
@@ -31,5 +31,11 @@ class Categories extends Model
     public function products()
     {
         return $this->hasOne(Products::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User', 'favorite_categories', 'id_user', 'id_category')
+            ->withTimestamps();
     }
 }

@@ -10,10 +10,11 @@
 | model instances for testing / seeding your application's database.
 |
  */
+use App\Models\User;
 use Faker\Generator as Faker;
 
 $factory->define(
-    \App\Models\User::class,
+    User::class,
     function (Faker $faker) {
         return [
             'name' => $faker->name,

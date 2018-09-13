@@ -1,9 +1,14 @@
 <?php
 
+use App\Models\Categories;
+use App\Models\ProductImages;
+use App\Models\Products;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+    private const VALUE_INSERT = 1;
     /**
      * Seed the application's database.
      *
@@ -11,11 +16,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(UsersTableSeeder::class);
-        $this->call(CategoriesTableSeeder::class);
-        $this->call(FavoriteCategoriesTableSeeder::class);
-        $this->call(ProductsTableSeeder::class);
-        $this->call(ProductImagesTableSeeder::class);
-        $this->call(RegisteredTableSeeder::class);
+        factory(User::class, self::VALUE_INSERT)->create()
+            ->each(function ($users) {
+                factory(Categories::class, self::VALUE_INSERT)->create()
+                    ->each(function ($categories) use (&$users) {
+                        $users->categories()->save($categories)->make();
+
+                        factory(Products::class, self::VALUE_INSERT)->create([
+                            'category_id' => $categories->id,
+                        ])
+                            ->each(function ($products) use (&$categories) {
+                                factory(ProductImages::class, self::VALUE_INSERT)->create([
+                                    'products_id' => $products->id,
+                                ]);
+                            });
+                    });
+            });
     }
 }

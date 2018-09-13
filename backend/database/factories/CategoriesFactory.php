@@ -7,13 +7,7 @@ $factory->define(
     function (Faker $faker) {
         return [
             'name' => $faker->name,
-            'icon_image' => $faker->image(
-                'storage/app/public/image',
-                400,
-                300,
-                null,
-                false
-            )
+            'icon_image' => $faker->image('storage/app/public/image', 400, 300, null, false),
         ];
     }
 );

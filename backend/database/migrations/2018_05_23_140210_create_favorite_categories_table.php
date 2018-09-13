@@ -17,15 +17,24 @@ class CreateFavoriteCategoriesTable extends Migration
             'favorite_categories',
             function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('id_category')
+                $table->unsignedInteger('id_category')
                     ->index()
                     ->nullable(false);
-                $table->string('id_user')
+                $table->unsignedInteger('id_user')
                     ->index()
                     ->nullable(false);
                 $table->timestamps();
+
+                $table->foreign('id_category')
+                    ->references('id')
+                    ->on('categories');
+
+                $table->foreign('id_user')
+                    ->references('id')
+                    ->on('users');
             }
         );
+
     }
 
     /**

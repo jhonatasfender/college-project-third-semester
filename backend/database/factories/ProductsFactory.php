@@ -9,10 +9,7 @@ $factory->define(
             'name' => $faker->unique()->word() . " - " . $faker->unique()->name,
             'description' => $faker->sentence(50),
             'price' => $faker->randomFloat(2, 0, 1000),
-            'expiration_date' => $faker->dateTime(),
-            'category_id' => function () {
-                return factory(\App\Models\Categories::class)->create()->id;
-            },
+            'expiration_date' => $faker->dateTime()
         ];
     }
 );
