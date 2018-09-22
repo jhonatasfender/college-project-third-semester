@@ -17,20 +17,26 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         factory(User::class, self::VALUE_INSERT)->create()
-            ->each(function ($users) {
-                factory(Categories::class, self::VALUE_INSERT)->create()
-                    ->each(function ($categories) use (&$users) {
-                        $users->categories()->save($categories)->make();
+            ->each(
+                function ($users) {
+                    factory(Categories::class, self::VALUE_INSERT)->create()
+                        ->each(
+                            function ($categories) use (&$users) {
+                                $users->categories()->save($categories)->make();
 
-                        factory(Products::class, self::VALUE_INSERT)->create([
-                            'category_id' => $categories->id,
-                        ])
-                            ->each(function ($products) use (&$categories) {
-                                factory(ProductImages::class, self::VALUE_INSERT)->create([
-                                    'products_id' => $products->id,
-                                ]);
-                            });
-                    });
-            });
+                                factory(Products::class, self::VALUE_INSERT)->create(
+                                    ['category_id' => $categories->id]
+                                )
+                                    ->each(
+                                        function ($products) use (&$categories) {
+                                            factory(ProductImages::class, self::VALUE_INSERT)->create(
+                                                ['products_id' => $products->id]
+                                            );
+                                        }
+                                    );
+                            }
+                        );
+                }
+            );
     }
 }

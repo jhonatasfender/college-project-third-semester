@@ -104,12 +104,6 @@
                             <span class="title">Produtos</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{url('/registered')}}" class="nav-link">
-                            <i class="fa fa-users" aria-hidden="true"></i>
-                            <span class="title">Cadastrados</span>
-                        </a>
-                    </li>
                 </ul>
                 <!-- END SIDEBAR MENU -->
             </div>
