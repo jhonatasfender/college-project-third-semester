@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    private const VALUE_INSERT = 1;
+    private const VALUE_INSERT = 2;
     /**
      * Seed the application's database.
      *

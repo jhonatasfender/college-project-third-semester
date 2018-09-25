@@ -65,7 +65,7 @@ class ImageController extends Controller
         ImageManager $imageManager,
         LoggerInterface $log
     ) {
-        $this->middleware('auth');
+        // $this->middleware('auth');
         $this->config = $config;
         $this->response = $response;
         $this->storage = $storage;

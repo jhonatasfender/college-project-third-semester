@@ -8,6 +8,7 @@ import {SearchPage} from '../search/search';
 import {BookmarksPage} from '../bookmarks/bookmarks';
 import {MapPage} from '../map/map';
 import {NearbyPage} from '../nearby/nearby';
+import {CollectionService} from '../../services/collection-service';
 
 /*
  Generated class for the LoginPage page.
@@ -38,10 +39,16 @@ export class HomePage {
 
   // list popular places
   public popularPlaces: any;
+  public collections: any;
 
-
-  constructor(public nav:NavController, public placeService:PlaceService, public app:App) {
+  constructor(
+    public nav:NavController, 
+    public placeService:PlaceService, 
+    public collectionService: CollectionService, 
+    public app:App
+  ) {
     this.popularPlaces = placeService.getAll();
+    this.collections = collectionService.getAll();
   }
 
   // go to select location page

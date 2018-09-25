@@ -16,7 +16,11 @@ import {PlacesPage} from '../places/places';
 export class CollectionsPage {
   public collections: any;
 
-  constructor(public nav: NavController, public collectionService: CollectionService, public app:App) {
+  constructor(
+    public nav: NavController, 
+    public collectionService: CollectionService, 
+    public app:App
+  ) {
     // set sample data
     this.collections = collectionService.getAll();
   }
