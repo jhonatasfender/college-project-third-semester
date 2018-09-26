@@ -1,12 +1,33 @@
 import {Injectable} from "@angular/core";
 import {PLACES} from "./mock-places";
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class PlaceService {
   private places: any;
 
-  constructor() {
+  constructor(public http: HttpClient) {
     this.places = PLACES;
+    if (!PLACES.length) {
+      this.http.get(
+          'http://127.0.0.1:8000/api/products', {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Accept": "application/json",
+              "Content-Type": "application/json"
+            }
+          }
+        )
+        .subscribe(data => {
+          console.log(data);
+          for (let i = 0; i < data.length; i++) {
+            const place = data[i];
+            this.places.push(place)
+          }
+        }, err => {
+          console.log(err);
+        });
+    }
   }
 
   getAll() {

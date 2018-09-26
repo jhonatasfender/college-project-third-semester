@@ -9,27 +9,27 @@ export class CollectionService {
   constructor(public http: HttpClient) {
     this.collections = COLLECTIONS;
 
-    if(!COLLECTIONS.length) {
-    this.http.get(
-        'http://127.0.0.1:8000/api/categories', {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Accept":"application/json",
-            "Content-Type":"application/json"
+    if (!COLLECTIONS.length) {
+      this.http.get(
+          'http://127.0.0.1:8000/api/categories', {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Accept": "application/json",
+              "Content-Type": "application/json"
+            }
           }
-        }
-      )
-      .subscribe(data => {
-        for (let i = 0; i < data.length; i++) {
-          const category = data[i];
-          category.background = "http://127.0.0.1:8000/storage/app/public/image/w_328,h_166/" + category.icon_image;
-          console.log(category.background);
-          this.collections.push(category) 
-        }
-      }, err => {
-        console.log(err);
-      });
-    } 
+        )
+        .subscribe(data => {
+          console.log(data);
+          for (let i = 0; i < data.length; i++) {
+            const category = data[i];
+            category.background = "http://127.0.0.1:8000/storage/app/public/image/w_328,h_166/" + category.icon_image;
+            this.collections.push(category)
+          }
+        }, err => {
+          console.log(err);
+        });
+    }
   }
 
   getAll() {
