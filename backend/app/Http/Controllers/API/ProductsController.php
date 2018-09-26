@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Models\Products;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class ProductsController extends Controller
 {
@@ -15,7 +15,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return Products::all();
+        return Products::with('images')
+            ->with('category')->get();
     }
 
     /**

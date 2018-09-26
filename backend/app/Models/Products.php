@@ -39,6 +39,6 @@ class Products extends Model
      */
     public function category()
     {
-        return $this->hasOne(Categories::class);
+        return $this->belongsTo(Categories::class);
     }
 }
