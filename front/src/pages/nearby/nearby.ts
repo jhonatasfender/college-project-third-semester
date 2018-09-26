@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
-import {NavController, Platform} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, Platform } from 'ionic-angular';
+
 declare var google: any;
 
 /*
@@ -15,8 +16,10 @@ declare var google: any;
 export class NearbyPage {
   public map: any;
 
-  constructor(public nav: NavController, public platform: Platform) {
-
+  constructor(
+    public nav: NavController,
+    public platform: Platform
+  ) {
     // when platform ready, init map
     platform.ready().then(() => {
       // init map

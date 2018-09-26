@@ -6,16 +6,16 @@
 -->
 
 <ion-header>
-  <ion-navbar color="primary"  hideBackButton="true">
-    <button  ion-button class="nav-button" (click)="selectLocation()">
+  <ion-navbar color="primary" hideBackButton="true">
+    <button ion-button class="nav-button" (click)="selectLocation()">
       {{ currentLocation }}
       <ion-icon name="ios-arrow-down" class="text-md"></ion-icon>
     </button>
     <ion-buttons end>
-      <button  ion-button (click)="goToBookmarks()">
+      <button ion-button (click)="goToBookmarks()">
         <ion-icon name="bookmark"></ion-icon>
       </button>
-      <button  ion-button (click)="goToSearch()">
+      <button ion-button (click)="goToSearch()">
         <ion-icon name="search"></ion-icon>
       </button>
     </ion-buttons>
@@ -26,57 +26,51 @@
 
   <!-- Slider -->
   <ion-slides pager class="pager-inner">
-
     <ion-slide *ngFor="let slide of slides">
       <img src="{{ slide.src }}" alt="">
     </ion-slide>
-
   </ion-slides>
 
   <div padding>
     <!-- Nearby button -->
-    <ion-item padding color="light"  class="no-border" (click)="goToNearBy()">
+    <ion-item padding color="light" class="no-border" (click)="goToNearBy()">
       <ion-icon name="pin"></ion-icon>
-      Nearby
-      <ion-icon name="arrow-forward" color="secondary"  class="pull-right"></ion-icon>
+      Nas proximidades
+      <ion-icon name="arrow-forward" color="secondary" class="pull-right"></ion-icon>
     </ion-item>
 
     <!-- Categories -->
     <div text-center margin-top margin-bottom class="secondary">
-      Here are 6 ways to think about your next meal
+      Aqui estão 6 maneiras de pensar na sua próxima refeição
     </div>
 
     <ion-grid class="grid-no-padding">
-
       <ion-row>
-
         <ion-col *ngFor="let category of collections">
           <ion-item class="no-border" (click)="viewPlaces()">{{category.name}}</ion-item>
         </ion-col>
-
       </ion-row>
-
     </ion-grid>
 
     <!-- All places -->
     <ion-item class="margin-top no-border light-bg" (click)="goToNearBy()">
       <ion-icon name="pin"></ion-icon>
-      All places in {{ currentLocation }}
-      <ion-icon name="arrow-forward" color="secondary"  class="pull-right"></ion-icon>
+      Todos os lugares em {{ currentLocation }}
+      <ion-icon name="arrow-forward" color="secondary" class="pull-right"></ion-icon>
     </ion-item>
-
   </div>
 
   <!-- Popular -->
   <div text-center class="secondary margin-top margin-bottom">
-    Popular nearby
+    Popular nas proximidades
   </div>
 
   <div class="light-bg card" margin-bottom>
     <ion-grid>
       <ion-row wrap>
         <ion-col class="rlt" col-4 *ngFor="let place of popularPlaces" (click)="viewPlace(place.id)">
-          <img class="round" src="{{ place.photos[0].thumb }}" alt="">
+          <!-- {{ place.photos[0].thumb }} -->
+          <img class="round" src="" alt="">
           <div class="item-rating">{{ place.rating }}</div>
           <div class="text-md strong">{{ place.name }}</div>
           <div class="text-sm secondary">{{ place.district }}</div>
@@ -86,7 +80,7 @@
     </ion-grid>
 
     <div class="block-footer" padding text-right (click)="viewPlaces()">
-      <span ion-text color="primary" >See more ></span>
+      <span ion-text color="primary">Ver mais ></span>
     </div>
   </div>
 </ion-content>
