@@ -1,6 +1,6 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {App, NavController} from 'ionic-angular';
-import {CollectionService} from '../../services/collection-service';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { App, NavController } from 'ionic-angular';
+import { CollectionService } from '../../services/collection-service';
 
 /*
  Generated class for the LoginPage page.
@@ -17,21 +17,21 @@ export class AddEditCollectionsPage {
   @Input() private collection: any;
 
   constructor(
-    public nav: NavController, 
-    public collectionService: CollectionService, 
-    public app:App
+    public nav: NavController,
+    public collectionService: CollectionService,
+    public app: App
   ) {
   }
 
   ngOnInit() {
     console.log(this.collection);
   }
-  
-  public closeModal(){
+
+  public closeModal() {
     this.close.emit();
   }
 
-  public submit(){
+  public submit() {
     this.collectionService.update(this.collection);
   }
 }

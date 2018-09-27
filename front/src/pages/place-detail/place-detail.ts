@@ -1,10 +1,10 @@
-import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
-import {PlaceService} from '../../services/place-service';
-import {MenuPage} from '../menu/menu';
-import {MapPage} from '../map/map';
-import {PhotosPage} from '../photos/photos';
-import {ReviewsPage} from '../reviews/reviews';
+import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { PlaceService } from '../../services/place-service';
+import { MenuPage } from '../menu/menu';
+import { MapPage } from '../map/map';
+import { PhotosPage } from '../photos/photos';
+import { ReviewsPage } from '../reviews/reviews';
 
 /*
  Generated class for the LoginPage page.
@@ -17,11 +17,11 @@ import {ReviewsPage} from '../reviews/reviews';
   templateUrl: 'place-detail.html'
 })
 export class PlaceDetailPage {
-  public place:any;
+  public place: any;
 
-  public workingHour:any;
+  public workingHour: any;
 
-  constructor(public nav:NavController, public placeService:PlaceService) {
+  constructor(public nav: NavController, public placeService: PlaceService) {
     // get first place for example
     this.place = placeService.getItem(1);
 

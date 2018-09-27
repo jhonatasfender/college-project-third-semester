@@ -6,7 +6,7 @@
 -->
 
 <ion-header>
-  <ion-navbar color="primary" >
+  <ion-navbar color="primary">
     <ion-title>CATEGORIAS</ion-title>
   </ion-navbar>
 </ion-header>
@@ -17,16 +17,24 @@
       <ion-item class="margin-top" [ngStyle]="{'background-image': 'url(' + collection.background + ')'}">
         <div class="item-info">
           <ion-icon class="bookmark-icon" name="bookmark" color="primary" [hidden]="!collection.bookmarked" (click)="addBookMark(collection)"></ion-icon>
-          <ion-icon class="bookmark-icon" name="bookmark-outline" color="light" [hidden]="collection.bookmarked" (click)="addBookMark(collection)"></ion-icon>
-          <div class="text-sm light" (click)="goToCollection(collection.id)">{{ collection.num_places }} PLACE &bull; {{ collection.num_bookmarks }} BOOKMARKS </div>
+          <ion-icon class="bookmark-icon" name="bookmark-outline" color="light" [hidden]="collection.bookmarked"
+            (click)="addBookMark(collection)"></ion-icon>
+          <div class="text-sm light" (click)="goToCollection(collection.id)">
+            {{ collection.num_places }} PLACE &bull;
+            {{ collection.num_bookmarks }} BOOKMARKS
+          </div>
           <h3 class="light" (click)="goToCollection(collection.id)">{{ collection.name }}</h3>
         </div>
       </ion-item>
       <ion-item-options side="left">
-        <button ion-button color="secondary" (click)="edit(collection)"><ion-icon ios="ios-create" md="md-create"></ion-icon></button>
+        <button ion-button color="secondary" (click)="edit(collection)">
+          <ion-icon ios="ios-create" md="md-create"></ion-icon>
+        </button>
       </ion-item-options>
       <ion-item-options side="right">
-        <button ion-button ><ion-icon ios="ios-trash" md="md-trash"></ion-icon></button>
+        <button ion-button>
+          <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+        </button>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>

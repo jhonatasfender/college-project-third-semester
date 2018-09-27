@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {App, NavController} from 'ionic-angular';
-import {CollectionService} from '../../services/collection-service';
-import {PlacesPage} from '../places/places';
+import { Component } from '@angular/core';
+import { App, NavController } from 'ionic-angular';
+import { CollectionService } from '../../services/collection-service';
+import { PlacesPage } from '../places/places';
 
 /*
  Generated class for the LoginPage page.
@@ -19,9 +19,9 @@ export class CollectionsPage {
   public visibleEdit: boolean = false;
 
   constructor(
-    public nav: NavController, 
-    public collectionService: CollectionService, 
-    public app:App
+    public nav: NavController,
+    public collectionService: CollectionService,
+    public app: App
   ) {
     // set sample data
     this.collections = collectionService.getAll();
@@ -32,17 +32,17 @@ export class CollectionsPage {
     collection.bookmarked = !collection.bookmarked;
   }
 
-  public edit(collection){
+  public edit(collection) {
     this.listEdit = collection;
     this.visibleEdit = true;
   }
 
   // view a collection
   goToCollection(id) {
-    this.app.getRootNav().push(PlacesPage,{id:id});
+    this.app.getRootNav().push(PlacesPage, { id: id });
   }
 
-  public closeModal(){
+  public closeModal() {
     this.visibleEdit = false;
     this.listEdit = null;
   }
