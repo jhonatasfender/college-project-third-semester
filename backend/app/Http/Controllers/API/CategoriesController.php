@@ -15,7 +15,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return Categories::all();
+        return Categories::with('products')->get();
     }
 
     /**

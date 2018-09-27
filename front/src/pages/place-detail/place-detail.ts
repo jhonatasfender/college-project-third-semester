@@ -38,30 +38,6 @@ export class PlaceDetailPage {
     };
     var availableNow = false;
 
-    switch (d.getDay()) {
-      case 0:
-        currentDay = hours.sunday;
-        break;
-      case 1:
-        currentDay = hours.monday;
-        break;
-      case 2:
-        currentDay = hours.tuesday;
-        break;
-      case 3:
-        currentDay = hours.wednesday;
-        break;
-      case 4:
-        currentDay = hours.thursday;
-        break;
-      case 5:
-        currentDay = hours.friday;
-        break;
-      case 6:
-        currentDay = hours.saturday;
-        break;
-    }
-
     availableNow = ((d.getHours() >= currentDay.from) && (d.getHours() <= currentDay.to));
 
     return {

@@ -16,7 +16,6 @@ import {AccountPage} from '../pages/account/account';
 import {MyApp} from './app.component';
 import {AddReviewPage} from '../pages/add-review/add-review';
 import {BookmarksPage} from '../pages/bookmarks/bookmarks';
-import {CollectionsPage} from '../pages/collections/collections';
 import {FeedPage} from '../pages/feed/feed';
 import {FiltersPage} from '../pages/filters/filters';
 import {ForgotPasswordPage} from '../pages/forgot-password/forgot-password';
@@ -36,13 +35,16 @@ import {SignUpPage} from '../pages/sign-up/sign-up';
 import {UserPage} from '../pages/user/user';
 // end import pages
 
+// import components
+import {CollectionsModule} from '../pages/collections/collections.module';
+// import end components
+
 @NgModule({
   declarations: [
     MyApp,
     AccountPage,
     AddReviewPage,
     BookmarksPage,
-    CollectionsPage,
     FeedPage,
     FiltersPage,
     ForgotPasswordPage,
@@ -63,6 +65,7 @@ import {UserPage} from '../pages/user/user';
   ],
   imports: [
     HttpClientModule,
+    CollectionsModule,
     BrowserModule,
     IonicModule.forRoot(MyApp, {
       platforms: {
@@ -82,7 +85,6 @@ import {UserPage} from '../pages/user/user';
     AccountPage,
     AddReviewPage,
     BookmarksPage,
-    CollectionsPage,
     FeedPage,
     FiltersPage,
     ForgotPasswordPage,

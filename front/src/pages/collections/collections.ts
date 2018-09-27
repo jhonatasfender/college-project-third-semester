@@ -15,6 +15,8 @@ import {PlacesPage} from '../places/places';
 })
 export class CollectionsPage {
   public collections: any;
+  public listEdit: any;
+  public visibleEdit: boolean = false;
 
   constructor(
     public nav: NavController, 
@@ -30,8 +32,18 @@ export class CollectionsPage {
     collection.bookmarked = !collection.bookmarked;
   }
 
+  public edit(collection){
+    this.listEdit = collection;
+    this.visibleEdit = true;
+  }
+
   // view a collection
   goToCollection(id) {
-    this.app.getRootNav().push(PlacesPage);
+    this.app.getRootNav().push(PlacesPage,{id:id});
+  }
+
+  public closeModal(){
+    this.visibleEdit = false;
+    this.listEdit = null;
   }
 }

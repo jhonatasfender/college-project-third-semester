@@ -30,7 +30,7 @@ class Categories extends Model
      */
     public function products()
     {
-        return $this->hasOne(Products::class);
+        // return $this->hasMany(Products::class);
     }
 
     public function users()

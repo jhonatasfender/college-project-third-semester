@@ -57,7 +57,7 @@
           <ion-col width-66>{{ getWorkingHours(place.working_hours) }}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col width-25 *ngFor="let photo of limitArray(place.photos, 4)">
+          <ion-col width-25 *ngFor="let photo of limitArray(place.image, 4)">
             <img class="round" src="{{ photo.thumb }}" alt="">
           </ion-col>
         </ion-row>

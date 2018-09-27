@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {App, NavController, ModalController} from 'ionic-angular';
+import {App, NavController, ModalController,NavParams} from 'ionic-angular';
 import {PlaceService} from '../../services/place-service';
 import {FiltersPage} from '../filters/filters';
 import {PlaceDetailPage} from '../place-detail/place-detail';
@@ -20,61 +20,44 @@ export class PlacesPage {
   // list of places
   public places: any;
 
-  constructor(public nav: NavController, public placeService: PlaceService, public app:App, public modalCtrl: ModalController) {
-    this.places = placeService.getAll();
+  constructor(
+    public nav: NavController, 
+    public placeService: PlaceService, 
+    public app:App, 
+    public params:NavParams,
+    public modalCtrl: ModalController
+  ) {
+    this.places = placeService.getPlacesByCollectoin(
+      this.params.get("id")
+    );
   }
 
   // get working hours in today
   getWorkingHours(hours) {
-    var d = new Date();
-    var currentDay = {
-      from: null,
-      to: null
-    };
-    var currentWeekDay = {};
+    let d = new Date();
+    let currentDay = {from: null,to: null};
+    let currentWeekDay = null;
 
-    switch (d.getDay()) {
-      case 0:
-        currentDay = hours.sunday;
-        currentWeekDay = 'Sun';
-        break;
-      case 1:
-        currentDay = hours.monday;
-        currentWeekDay = 'Mon';
-        break;
-      case 2:
-        currentDay = hours.tuesday;
-        currentWeekDay = 'Tue';
-        break;
-      case 3:
-        currentDay = hours.wednesday;
-        currentWeekDay = 'Wed';
-        break;
-      case 4:
-        currentDay = hours.thursday;
-        currentWeekDay = 'Thu';
-        break;
-      case 5:
-        currentDay = hours.friday;
-        currentWeekDay = 'Fri';
-        break;
-      case 6:
-        currentDay = hours.saturday;
-        currentWeekDay = 'Sat';
-        break;
+    let week = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    for (let _d = 0; _d < week.length; _d++) {
+      if(d.getDay() == _d) { 
+      currentWeekDay = week[_d];      
+      }
     }
-
-
+    
     return currentWeekDay + ' ' + currentDay.from + 'h to ' + currentDay.to + 'h';
   }
 
   // get limit elements for arr
   limitArray(arr, limit) {
     var tmpArr = [];
-
+    if(arr != undefined) {
     for (var i = 0; i < limit; i++) {
-      tmpArr.push(arr[i]);
+      if(arr[i]) { 
+        tmpArr.push(arr[i]);
+      }
     }
+  }
 
     return tmpArr;
   }
