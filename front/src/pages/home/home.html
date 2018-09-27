@@ -67,10 +67,9 @@
 
   <div class="light-bg card" margin-bottom>
     <ion-grid>
-      <ion-row wrap>
+      <ion-row wrap *ngIf="popularPlaces != undefined">
         <ion-col class="rlt" col-4 *ngFor="let place of popularPlaces" (click)="viewPlace(place.id)">
-          <!-- {{ place.photos[0].thumb }} -->
-          <img class="round" src="" alt="">
+          <img class="round" [src]="'http://127.0.0.1:8000/storage/app/public/image/w_328,h_166/' + place.images[0].file" alt="">
           <div class="item-rating">{{ place.rating }}</div>
           <div class="text-md strong">{{ place.name }}</div>
           <div class="text-sm secondary">{{ place.district }}</div>

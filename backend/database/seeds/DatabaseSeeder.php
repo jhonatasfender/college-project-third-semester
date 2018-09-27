@@ -21,8 +21,7 @@ class DatabaseSeeder extends Seeder
                 function ($users) {
                     factory(Categories::class, self::VALUE_INSERT)->create()
                         ->each(
-                            function ($categories) use (&$users) {
-                                $users->categories()->save($categories)->make();
+                            function ($categories) {
 
                                 factory(Products::class, self::VALUE_INSERT)->create(
                                     ['category_id' => $categories->id]
@@ -38,5 +37,11 @@ class DatabaseSeeder extends Seeder
                         );
                 }
             );
+
+        User::all()->each(function ($user) {
+            Categories::all()->each(function ($category) use ($user) {
+                $category->users()->save($user);
+            });
+        });
     }
 }

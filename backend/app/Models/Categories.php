@@ -35,7 +35,7 @@ class Categories extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\Models\User', 'favorite_categories', 'id_user', 'id_category')
+        return $this->belongsToMany('App\Models\User', 'favorite_categories', 'id_category', 'id_user')
             ->withTimestamps();
     }
 }

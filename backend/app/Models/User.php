@@ -29,7 +29,7 @@ class User extends Authenticatable
 
     public function categories()
     {
-        return $this->belongsToMany('App\Models\Categories', 'favorite_categories', 'id_category', 'id_user')
+        return $this->belongsToMany('App\Models\Categories', 'favorite_categories', 'id_user', 'id_category')
             ->withTimestamps();
     }
 }

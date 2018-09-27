@@ -22,7 +22,7 @@ import {CollectionService} from '../../services/collection-service';
 })
 export class HomePage {
   // current location
-  public currentLocation = 'New York, USA';
+  public currentLocation = 'Brasilia - UDF, DF';
 
   // list slides for slider
   public slides = [

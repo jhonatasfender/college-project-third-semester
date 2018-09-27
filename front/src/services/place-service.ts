@@ -34,7 +34,7 @@ export class PlaceService {
     return this.places;
   }
 
-  public getPlacesByCollectoin(id){
+  public getPlacesByCollectoin(id) {
     let categories = new Array();
     for (var i = 0; i < this.places.length; i++) {
       if (this.places[i].category.id === parseInt(id)) {
