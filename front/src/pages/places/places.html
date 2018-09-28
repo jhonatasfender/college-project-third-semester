@@ -7,7 +7,7 @@
 
 <ion-header>
   <ion-navbar color="primary" >
-    <ion-title>Places</ion-title>
+    <ion-title>Produtos</ion-title>
 
     <ion-buttons end>
       <button  ion-button (click)="goToSearch()">
@@ -37,8 +37,8 @@
       <!-- extra info -->
       <div class="text-sm secondary" padding-bottom>
         {{ place.num_reviews }} Reviews &bull;
-        {{ place.num_bookmarks }} Bookmarks &bull;
-        {{ place.num_check_in }} Been There
+        {{ place.num_bookmarks }} Favoritos &bull;
+        {{ place.num_check_in }} Esteve lá
       </div>
     </ion-card-header>
 
@@ -49,16 +49,16 @@
           <ion-col width-66>{{ place.cuisines }}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-4 class="secondary">Cost</ion-col>
+          <ion-col col-4 class="secondary">Custo</ion-col>
           <ion-col width-66>{{ place.cost }}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-4 class="secondary">Hours</ion-col>
+          <ion-col col-4 class="secondary">Horas</ion-col>
           <ion-col width-66>{{ getWorkingHours(place.working_hours) }}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col width-25 *ngFor="let photo of limitArray(place.image, 4)">
-            <img class="round" src="{{ photo.thumb }}" alt="">
+          <ion-col width-25 *ngFor="let photo of limitArray(place.images, 4)">
+            <img class="round" src="http://127.0.0.1:8000/storage/app/public/image/w_400,h_400/{{ photo.file }}" alt="">
           </ion-col>
         </ion-row>
       </ion-grid>

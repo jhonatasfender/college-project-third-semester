@@ -18,8 +18,8 @@
 
 <ion-content class=" common-bg rlt">
 
-  <!-- content top -->
-  <div class="bg-image" [ngStyle]="{'background-image': 'url(' + place.image[0].full_size + ')'}">
+  <!-- content top place.image[0].full_size-->
+  <div class="bg-image" [ngStyle]="{'background-image': 'url(' + getImageBackground(place) + ')'}">
 
     <div class="bg-overlay" padding>
       <div>
@@ -30,19 +30,16 @@
 
         <div class="pull-right" text-right>
           <div class="rating">{{ place.rating }}</div>
-          <div>{{ place.num_votes }} votes</div>
+          <div>{{ place.num_votes }} votos</div>
         </div>
 
         <div class="clear"></div>
       </div>
 
       <div margin-top>
-        <ion-badge color="favorite"  [hidden]="!workingHour.available">OPEN NOW</ion-badge>
-        <ion-badge color="primary"  [hidden]="workingHour.available">CLOSE NOW</ion-badge>
-        {{ workingHour.from }}h to {{ workingHour.to }}h
         <div>
-          {{ place.num_reviews }} Reviews &bull;
-          {{ place.num_photos }} Photos
+          {{ place.num_reviews }} Recomendações &bull;
+          {{ place.num_photos }} Fotos
         </div>
       </div>
 
@@ -64,7 +61,7 @@
 
   <!--address-->
   <div padding class="light-bg">
-    <div class="strong">Address</div>
+    <div class="strong">Endereço</div>
     <span>{{ place.address }}</span>
 
     <p>
@@ -75,24 +72,11 @@
     </p>
   </div>
   <div class="block-footer" padding text-right (click)="goToMap()">
-    <span ion-text color="primary" >Map & Directions</span>
+    <span ion-text color="primary" >Mapa e Direcções</span>
     <ion-icon color="primary"  name="arrow-forward"></ion-icon>
   </div>
-
-  <!-- menu -->
-  <div padding class="light-bg margin-top-20">
-    <div class="strong">MAIN MENU</div>
-    <div class="menu-title">
-      {{ place.menu[0].name }}
-    </div>
-    <div *ngFor="let item of place.menu[0].items">
-      <span>{{ item.name }}</span>
-      <span class="pull-right">{{ item.price | currency:'USD':true }}</span>
-    </div>
-  </div>
-  <div class="block-footer" padding text-right (click)="goToMenu()">
-    <span ion-text color="primary" >See Menu</span>
-    <ion-icon color="primary"  name="arrow-forward"></ion-icon>
+  <div class="block-footer" padding>
+    {{place.description}}
   </div>
 
   <!-- photos -->
@@ -101,25 +85,25 @@
 
     <ion-grid class="grid-no-padding">
       <ion-row>
-        <ion-col width-25 *ngFor="let photo of limitArray(place.photos, 4)">
-          <img class="round" src="{{ photo.thumb }}" alt="">
+        <ion-col width-25 *ngFor="let photo of limitArray(place.images, 4)">
+          <img class="round" src="http://127.0.0.1:8000/storage/app/public/image/w_400,h_400/{{ photo.file }}" alt="">
         </ion-col>
       </ion-row>
     </ion-grid>
 
     <button  ion-button color="favorite"  block>
-      Add photo
+      Adicionar foto
     </button>
   </div>
   <div class="block-footer" padding text-right (click)="goToPhotos()">
-    <span ion-text color="primary" >See All Photos</span>
+    <span ion-text color="primary" >Ver todas as fotos</span>
     <ion-icon color="primary"  name="arrow-forward"></ion-icon>
   </div>
 
   <!-- Reviews -->
   <div padding class="light-bg margin-top-20">
     <div class="strong">Reviews</div>
-    <div margin-top class="secondary">RECENT REVIEWS</div>
+    <div margin-top class="secondary">Recentes Comentarios</div>
     <ion-list class="list-no-border">
       <ion-item *ngFor="let review of place.reviews" text-wrap>
         <ion-avatar item-left>
@@ -127,42 +111,31 @@
         </ion-avatar>
         <div class="strong">{{ review.username }}</div>
         <div class="text-sm">
-          <span class="strong">RATED</span>
+          <span class="strong">AVALIADO</span>
           <span class="rating">{{ review.rating }}</span>
           {{ review.comment }}
         </div>
       </ion-item>
     </ion-list>
   </div>
-  <div class="block-footer" padding text-right (click)="goToReviews()">
-    <span ion-text color="primary" >Read All Review({{ place.num_reviews }})</span>
+  <div class="block-footer" padding text-right *ngIf="place.num_reviews && place.num_reviews != 0" (click)="goToReviews()">
+    <span ion-text color="primary" >Leia todos os Comentarios({{ place.num_reviews }})</span>
     <ion-icon color="primary"  name="arrow-forward"></ion-icon>
   </div>
 
   <!-- Other info -->
   <div padding class="light-bg margin-top-20">
-    <span class="strong">Hours</span>
-    <ion-badge color="favorite"  [hidden]="!workingHour.available">OPEN NOW</ion-badge>
-    <ion-badge color="primary"  [hidden]="workingHour.available">CLOSE NOW</ion-badge>
-    <div class="strong">
-      {{ workingHour.from }}h to {{ workingHour.to }}h
-    </div>
-    <span ion-text color="primary" >View All Days</span>
-
-    <div class="strong" margin-top>Cuisines</div>
-    <div>{{ place.cuisines }}</div>
-
-    <div class="strong" margin-top>Cost</div>
+    <div class="strong" margin-top>Custos</div>
     <div>{{ place.cost | currency:'USD':true }}</div>
 
     <div>
       <ion-icon name="card"></ion-icon>
-      <span *ngIf="place.accepted_card && place.accepted_cash">Cash & card accepted</span>
-      <span *ngIf="place.accepted_card && !place.placeaccepted_cash">Card accepted</span>
-      <span *ngIf="!place.accepted_card && place.accepted_cash">Cash accepted</span>
+      <span *ngIf="place.accepted_card && place.accepted_cash">Dinheiro e cartão aceitos</span>
+      <span *ngIf="place.accepted_card && !place.placeaccepted_cash">Cartão aceito</span>
+      <span *ngIf="!place.accepted_card && place.accepted_cash">Dinheiro aceite</span>
     </div>
 
-    <div class="strong" margin-top>Highlights</div>
+    <div class="strong" margin-top>Destaques</div>
     <div *ngFor="let item of place.highlights">
       <ion-icon name="checkmark-circle" color="favorite" ></ion-icon>
       {{ item }}

@@ -69,7 +69,9 @@ export class HomePage {
     var $imgs = new Array();
     $place.map(function (element) {
       element.images.map(function (img) {
-        $imgs.push('http://127.0.0.1:8000/storage/app/public/image/w_400,h_400/' + img.file);
+        if(img.file != undefined) { 
+          $imgs.push('http://127.0.0.1:8000/storage/app/public/image/w_400,h_400/' + img.file);
+        }
       });
     });
 

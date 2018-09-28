@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { PlaceService } from '../../services/place-service';
-import { MenuPage } from '../menu/menu';
-import { MapPage } from '../map/map';
-import { PhotosPage } from '../photos/photos';
-import { ReviewsPage } from '../reviews/reviews';
+import {Component} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
+import {PlaceService} from '../../services/place-service';
+import {MenuPage} from '../menu/menu';
+import {MapPage} from '../map/map';
+import {PhotosPage} from '../photos/photos';
+import {ReviewsPage} from '../reviews/reviews';
 
 /*
  Generated class for the LoginPage page.
@@ -17,16 +17,29 @@ import { ReviewsPage } from '../reviews/reviews';
   templateUrl: 'place-detail.html'
 })
 export class PlaceDetailPage {
-  public place: any;
+  public place:any;
 
-  public workingHour: any;
+  public workingHour:any;
 
-  constructor(public nav: NavController, public placeService: PlaceService) {
-    // get first place for example
-    this.place = placeService.getItem(1);
+  constructor(
+    public nav:NavController, 
+    public params: NavParams,
+    public placeService:PlaceService
+  ) {
+    console.log(this.params.get("id"));
+    this.place = placeService.getItem(
+      this.params.get("id")
+    );
 
     // get working hours
     this.workingHour = this.getWorkingHours(this.place.working_hours);
+  }
+
+  public getImageBackground(place) {
+    if(place != undefined && place.images.length != 0) {
+      return 'http://127.0.0.1:8000/storage/app/public/image/w_400,h_400/' + place.images[0].file;
+    }
+    return '';
   }
 
   // get working hours in today
@@ -52,8 +65,11 @@ export class PlaceDetailPage {
     var tmpArr = [];
 
     for (var i = 0; i < limit; i++) {
-      tmpArr.push(arr[i]);
+      if(arr[i] != undefined) {
+        tmpArr.push(arr[i]);
+      }
     }
+    console.log(tmpArr);
 
     return tmpArr;
   }

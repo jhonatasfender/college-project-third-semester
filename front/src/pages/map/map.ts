@@ -14,15 +14,18 @@ declare var google: any;
 export class MapPage {
   public map: any;
 
-  constructor(public nav: NavController, public platform: Platform) {
-
-    // when platform ready, init map
-    platform.ready().then(() => {
+  constructor(
+    public nav: NavController, 
+    public platform: Platform
+    ) {
+  
+    }
+  
+    ngOnInit() {
       // init map
       this.initializeMap();
-    });
-  }
-
+    }
+    
   initializeMap() {
     var minZoomLevel = 12;
 
