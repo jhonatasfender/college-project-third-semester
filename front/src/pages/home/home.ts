@@ -1,14 +1,14 @@
-import {Component} from '@angular/core';
-import {App, NavController} from 'ionic-angular';
-import {PlaceService} from '../../services/place-service';
-import {SelectLocationPage} from '../select-location/select-location';
-import {PlacesPage} from '../places/places';
-import {PlaceDetailPage} from '../place-detail/place-detail';
-import {SearchPage} from '../search/search';
-import {BookmarksPage} from '../bookmarks/bookmarks';
-import {MapPage} from '../map/map';
-import {NearbyPage} from '../nearby/nearby';
-import {CollectionService} from '../../services/collection-service';
+import { Component } from '@angular/core';
+import { App, NavController } from 'ionic-angular';
+import { PlaceService } from '../../services/place-service';
+import { SelectLocationPage } from '../select-location/select-location';
+import { PlacesPage } from '../places/places';
+import { PlaceDetailPage } from '../place-detail/place-detail';
+import { SearchPage } from '../search/search';
+import { BookmarksPage } from '../bookmarks/bookmarks';
+import { MapPage } from '../map/map';
+import { NearbyPage } from '../nearby/nearby';
+import { CollectionService } from '../../services/collection-service';
 
 /*
  Generated class for the LoginPage page.
@@ -42,13 +42,38 @@ export class HomePage {
   public collections: any;
 
   constructor(
-    public nav:NavController, 
-    public placeService:PlaceService, 
-    public collectionService: CollectionService, 
-    public app:App
+    public nav: NavController,
+    public placeService: PlaceService,
+    public collectionService: CollectionService,
+    public app: App
   ) {
     this.popularPlaces = placeService.getAll();
     this.collections = collectionService.getAll();
+  }
+
+  public limitPlace($place) {
+    if ($place != undefined) {
+      return $place.slice(0, 6);
+    }
+    return $place;
+  }
+
+  public limitCategory(collections) {
+    if (collections != undefined) {
+      return collections.slice(0, 6);
+    }
+    return collections;
+  }
+
+  public slideImages($place) {
+    var $imgs = new Array();
+    $place.map(function (element) {
+      element.images.map(function (img) {
+        $imgs.push('http://127.0.0.1:8000/storage/app/public/image/w_400,h_400/' + img.file);
+      });
+    });
+
+    return $imgs.slice(0, 15);
   }
 
   // go to select location page
@@ -57,13 +82,13 @@ export class HomePage {
   }
 
   // go to places
-  viewPlaces() {
-    this.app.getRootNav().push(PlacesPage);
+  viewPlaces(id) {
+    this.app.getRootNav().push(PlacesPage, { id: id });
   }
 
   // view a place
   viewPlace(id) {
-    this.app.getRootNav().push(PlaceDetailPage, {id: id});
+    this.app.getRootNav().push(PlaceDetailPage, { id: id });
   }
 
   // go to search page

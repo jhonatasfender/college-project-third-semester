@@ -35,13 +35,17 @@ export class PlaceService {
   }
 
   public getPlacesByCollectoin(id) {
-    let categories = new Array();
-    for (var i = 0; i < this.places.length; i++) {
-      if (this.places[i].category.id === parseInt(id)) {
-        categories.push(this.places[i]);
+    if (id == undefined) {
+      return this.getAll();
+    } else {
+      let categories = new Array();
+      for (var i = 0; i < this.places.length; i++) {
+        if (this.places[i].category.id === parseInt(id)) {
+          categories.push(this.places[i]);
+        }
       }
+      return categories;
     }
-    return categories;
   }
 
   getItem(id) {

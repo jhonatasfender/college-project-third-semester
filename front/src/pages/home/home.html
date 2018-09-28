@@ -25,9 +25,9 @@
 <ion-content class=" common-bg">
 
   <!-- Slider -->
-  <ion-slides pager class="pager-inner">
-    <ion-slide *ngFor="let slide of slides">
-      <img src="{{ slide.src }}" alt="">
+  <ion-slides pager class="pager-inner" *ngIf="popularPlaces != undefined && popularPlaces.length != 0">
+    <ion-slide *ngFor="let slide of slideImages(popularPlaces)">
+      <img src="{{ slide }}" alt="">
     </ion-slide>
   </ion-slides>
 
@@ -46,8 +46,8 @@
 
     <ion-grid class="grid-no-padding">
       <ion-row>
-        <ion-col *ngFor="let category of collections">
-          <ion-item class="no-border" (click)="viewPlaces()">{{category.name}}</ion-item>
+        <ion-col *ngFor="let category of limitCategory(collections)">
+          <ion-item class="no-border" (click)="viewPlaces(category.id)">{{category.name}}</ion-item>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -61,15 +61,15 @@
   </div>
 
   <!-- Popular -->
-  <div text-center class="secondary margin-top margin-bottom">
+  <div text-center class="secondary margin-top margin-bottom" *ngIf="popularPlaces != undefined && popularPlaces.length != 0">
     Popular nas proximidades
   </div>
-
   <div class="light-bg card" margin-bottom>
     <ion-grid>
-      <ion-row wrap *ngIf="popularPlaces != undefined">
-        <ion-col class="rlt" col-4 *ngFor="let place of popularPlaces" (click)="viewPlace(place.id)">
-          <img class="round" [src]="'http://127.0.0.1:8000/storage/app/public/image/w_328,h_166/' + place.images[0].file" alt="">
+      <ion-row wrap *ngIf="popularPlaces != undefined && popularPlaces.length != 0">
+        <ion-col class="rlt" col-4 *ngFor="let place of limitPlace(popularPlaces)" (click)="viewPlace(place.id)">
+          <img class="round" [src]="'http://127.0.0.1:8000/storage/app/public/image/w_328,h_166/' + place.images[0].file"
+            alt="">
           <div class="item-rating">{{ place.rating }}</div>
           <div class="text-md strong">{{ place.name }}</div>
           <div class="text-sm secondary">{{ place.district }}</div>
@@ -78,7 +78,8 @@
       </ion-row>
     </ion-grid>
 
-    <div class="block-footer" padding text-right (click)="viewPlaces()">
+    <div *ngIf="popularPlaces != undefined && popularPlaces.length != 0" class="block-footer" padding text-right
+      (click)="viewPlaces()">
       <span ion-text color="primary">Ver mais ></span>
     </div>
   </div>
