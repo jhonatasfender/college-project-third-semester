@@ -4,7 +4,7 @@ import { PlaceService } from '../../services/place-service';
 import { FiltersPage } from '../filters/filters';
 import { PlaceDetailPage } from '../place-detail/place-detail';
 import { SearchPage } from '../search/search';
-
+import { ENV } from '@app/env';
 
 /*
  Generated class for the LoginPage page.
@@ -17,6 +17,7 @@ import { SearchPage } from '../search/search';
   templateUrl: 'places.html'
 })
 export class PlacesPage {
+  public env = ENV;
   // list of places
   public places: any;
 
@@ -30,22 +31,6 @@ export class PlacesPage {
     this.places = placeService.getPlacesByCollectoin(
       this.params.get("id")
     );
-  }
-
-  // get working hours in today
-  getWorkingHours(hours) {
-    let d = new Date();
-    let currentDay = { from: null, to: null };
-    let currentWeekDay = null;
-
-    let week = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    for (let _d = 0; _d < week.length; _d++) {
-      if (d.getDay() == _d) {
-        currentWeekDay = week[_d];
-      }
-    }
-
-    return currentWeekDay + ' ' + currentDay.from + 'h to ' + currentDay.to + 'h';
   }
 
   // get limit elements for arr

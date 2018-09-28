@@ -22,21 +22,27 @@ export class LoginPage {
   }
 
   public loginFacebook() {
-
+    localStorage.setItem("logged", "logged");
   }
+
+  public loginGoogle() {
+    localStorage.setItem("logged", "logged");
+  }
+
   // process login
   login() {
     // add your login code here
     this.nav.push(MainTabsPage);
+    localStorage.setItem("logged", "logged");
   }
 
   // go to sign up page
 
   /*
-C:\Users\hoangduc\.android\
+    C:\Users\hoangduc\.android\
 
-keytool -exportcert -alias ebcbc059d5b3420cf3821c7c12a91f6f -keystore c:\www\app_pet_store\my-key.keystore | C:\OpenSSL\bin\openssl  sha1 -binary | C:\OpenSSL\bin\openssl  base64
-keytool -genkey -v -keystore my-key.keystore -alias ebcbc059d5b3420cf3821c7c12a91f6f -keyalg RSA -keysize 2048 -validity 10000
+    keytool -exportcert -alias ebcbc059d5b3420cf3821c7c12a91f6f -keystore c:\www\app_pet_store\my-key.keystore | C:\OpenSSL\bin\openssl  sha1 -binary | C:\OpenSSL\bin\openssl  base64
+    keytool -genkey -v -keystore my-key.keystore -alias ebcbc059d5b3420cf3821c7c12a91f6f -keyalg RSA -keysize 2048 -validity 10000
   */
   signUp() {
     // add our sign up code here

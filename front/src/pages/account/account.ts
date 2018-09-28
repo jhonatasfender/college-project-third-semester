@@ -13,4 +13,9 @@ import {NavController} from 'ionic-angular';
 })
 export class AccountPage {
   constructor(public nav: NavController) {}
+
+  public exit() {
+    localStorage.removeItem("logged");
+    window.location.reload(true);
+  }
 }

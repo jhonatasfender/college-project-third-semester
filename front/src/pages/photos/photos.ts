@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 import {PlaceService} from '../../services/place-service';
+import { ENV } from '@app/env';
 
 /*
  Generated class for the LoginPage page.
@@ -13,10 +14,18 @@ import {PlaceService} from '../../services/place-service';
   templateUrl: 'photos.html'
 })
 export class PhotosPage {
+  public env = ENV;
   public place: any;
 
-  constructor(public nav: NavController, public placeService: PlaceService) {
-    // get first place for example
-    this.place = placeService.getItem(1);
+  constructor(
+    public nav: NavController,
+    public params: NavParams,
+    public placeService: PlaceService
+  ) {
+    if (this.params.get("id")) {
+      this.place = placeService.getItem(
+        this.params.get("id")
+      );
+    }
   }
 }

@@ -53,12 +53,8 @@
           <ion-col width-66>{{ place.cost }}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-4 class="secondary">Horas</ion-col>
-          <ion-col width-66>{{ getWorkingHours(place.working_hours) }}</ion-col>
-        </ion-row>
-        <ion-row>
           <ion-col width-25 *ngFor="let photo of limitArray(place.images, 4)">
-            <img class="round" src="http://127.0.0.1:8000/storage/app/public/image/w_400,h_400/{{ photo.file }}" alt="">
+            <img class="round" src="{{env.url}}storage/app/public/image/w_400,h_400/{{ photo.file }}" alt="">
           </ion-col>
         </ion-row>
       </ion-grid>

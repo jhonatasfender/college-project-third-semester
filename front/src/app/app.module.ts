@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from '@angular/common/http';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 // import services
 import {PlaceService} from '../services/place-service';
@@ -109,6 +110,7 @@ import {CollectionsModule} from '../pages/collections/collections.module';
     ReviewService,
     StatusBar,
     SplashScreen,
+    SocialSharing,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

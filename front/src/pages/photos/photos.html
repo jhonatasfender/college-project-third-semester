@@ -7,16 +7,14 @@
 
 <ion-header>
   <ion-navbar color="primary" >
-    <ion-title>Photos</ion-title>
+    <ion-title>Fotos do Produto</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-row wrap>
-      <ion-col class="rlt" col-4 *ngFor="let photo of place.photos" (click)="viewPlace(place.id)">
-        <img class="round" src="{{ photo.thumb }}" alt="">
-      </ion-col>
+  <ion-grid *ngIf="place != undefined">
+    <ion-row class="image-margin-button" wrap *ngFor="let photo of place.images" (click)="viewPlace(place.id)">
+      <img class="round" src="{{env.url}}storage/app/public/image/w_400,h_400/{{ photo.file }}" alt="">
     </ion-row>
   </ion-grid>
 </ion-content>

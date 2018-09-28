@@ -21,5 +21,9 @@ export class MainTabsPage {
   public tabFeed = FeedPage;
   public tabAccount = AccountPage;
 
-  constructor(public nav: NavController) {}
+  public logged: boolean = false;
+
+  constructor(public nav: NavController) {
+    this.logged = localStorage.getItem("logged") =="logged" ? true : false;
+  }
 }

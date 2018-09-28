@@ -10,6 +10,8 @@ import { MapPage } from '../map/map';
 import { NearbyPage } from '../nearby/nearby';
 import { CollectionService } from '../../services/collection-service';
 
+import { ENV } from '@app/env';
+
 /*
  Generated class for the LoginPage page.
 
@@ -21,21 +23,11 @@ import { CollectionService } from '../../services/collection-service';
   templateUrl: 'home.html'
 })
 export class HomePage {
+
+  public env = ENV;
+
   // current location
   public currentLocation = 'Brasilia - UDF, DF';
-
-  // list slides for slider
-  public slides = [
-    {
-      src: 'assets/img/bugger.jpg'
-    },
-    {
-      src: 'assets/img/drink.jpg'
-    },
-    {
-      src: 'assets/img/entree.jpg'
-    }
-  ];
 
   // list popular places
   public popularPlaces: any;
@@ -70,7 +62,7 @@ export class HomePage {
     $place.map(function (element) {
       element.images.map(function (img) {
         if(img.file != undefined) { 
-          $imgs.push('http://127.0.0.1:8000/storage/app/public/image/w_400,h_400/' + img.file);
+          $imgs.push(ENV.url + 'storage/app/public/image/w_400,h_400/' + img.file);
         }
       });
     });

@@ -15,24 +15,26 @@ export class MapPage {
   public map: any;
 
   constructor(
-    public nav: NavController, 
+    public nav: NavController,
     public platform: Platform
-    ) {
-  
-    }
-  
-    ngOnInit() {
-      // init map
-      this.initializeMap();
-    }
-    
+  ) {
+
+  }
+
+  ngOnInit() {
+    // init map
+    this.initializeMap();
+  }
+
   initializeMap() {
     var minZoomLevel = 12;
-
-    this.map = new google.maps.Map(document.getElementById('map_canvas'), {
-      zoom: minZoomLevel,
-      center: new google.maps.LatLng(38.50, -90.50),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
+    
+    if (google) {
+      this.map = new google.maps.Map(document.getElementById('map_canvas'), {
+        zoom: minZoomLevel,
+        center: new google.maps.LatLng(38.50, -90.50),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+    }
   }
 }

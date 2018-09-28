@@ -9,7 +9,7 @@
   <ion-navbar color="primary" >
     <ion-title>Place Detail</ion-title>
     <ion-buttons end>
-      <button ion-button>
+      <button ion-button (click)="share()">
         <ion-icon name="md-share"></ion-icon>
       </button>
     </ion-buttons>
@@ -86,7 +86,7 @@
     <ion-grid class="grid-no-padding">
       <ion-row>
         <ion-col width-25 *ngFor="let photo of limitArray(place.images, 4)">
-          <img class="round" src="http://127.0.0.1:8000/storage/app/public/image/w_400,h_400/{{ photo.file }}" alt="">
+          <img class="round" src="{{env.url}}storage/app/public/image/w_400,h_400/{{ photo.file }}" alt="">
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -95,34 +95,11 @@
       Adicionar foto
     </button>
   </div>
-  <div class="block-footer" padding text-right (click)="goToPhotos()">
+  <div class="block-footer" padding text-right (click)="goToPhotos(place.id)">
     <span ion-text color="primary" >Ver todas as fotos</span>
     <ion-icon color="primary"  name="arrow-forward"></ion-icon>
   </div>
-
-  <!-- Reviews -->
-  <div padding class="light-bg margin-top-20">
-    <div class="strong">Reviews</div>
-    <div margin-top class="secondary">Recentes Comentarios</div>
-    <ion-list class="list-no-border">
-      <ion-item *ngFor="let review of place.reviews" text-wrap>
-        <ion-avatar item-left>
-          <img src="{{ review.profile_picture }}" alt="">
-        </ion-avatar>
-        <div class="strong">{{ review.username }}</div>
-        <div class="text-sm">
-          <span class="strong">AVALIADO</span>
-          <span class="rating">{{ review.rating }}</span>
-          {{ review.comment }}
-        </div>
-      </ion-item>
-    </ion-list>
-  </div>
-  <div class="block-footer" padding text-right *ngIf="place.num_reviews && place.num_reviews != 0" (click)="goToReviews()">
-    <span ion-text color="primary" >Leia todos os Comentarios({{ place.num_reviews }})</span>
-    <ion-icon color="primary"  name="arrow-forward"></ion-icon>
-  </div>
-
+  
   <!-- Other info -->
   <div padding class="light-bg margin-top-20">
     <div class="strong" margin-top>Custos</div>
@@ -134,12 +111,7 @@
       <span *ngIf="place.accepted_card && !place.placeaccepted_cash">Cartão aceito</span>
       <span *ngIf="!place.accepted_card && place.accepted_cash">Dinheiro aceite</span>
     </div>
-
-    <div class="strong" margin-top>Destaques</div>
-    <div *ngFor="let item of place.highlights">
-      <ion-icon name="checkmark-circle" color="favorite" ></ion-icon>
-      {{ item }}
-    </div>
+    <br><br><br><br>
   </div>
 
 </ion-content>

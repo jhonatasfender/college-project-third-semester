@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { PLACES } from "./mock-places";
 import { HttpClient } from '@angular/common/http';
+import { ENV } from '@app/env';
 
 @Injectable()
 export class PlaceService {
@@ -10,7 +11,7 @@ export class PlaceService {
     this.places = PLACES;
     if (!PLACES.length) {
       this.http.get(
-        'http://127.0.0.1:8000/api/products', {
+        ENV.url + 'api/products', {
           headers: {
             "Access-Control-Allow-Origin": "*",
             "Accept": "application/json",

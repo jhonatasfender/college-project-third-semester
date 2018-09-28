@@ -30,7 +30,7 @@
       <img src="{{ slide }}" alt="">
     </ion-slide>
   </ion-slides>
-
+  {{env.mode}}
   <div padding>
     <!-- Nearby button -->
     <ion-item padding color="light" class="no-border" (click)="goToNearBy()">
@@ -68,7 +68,7 @@
     <ion-grid>
       <ion-row wrap *ngIf="popularPlaces != undefined && popularPlaces.length != 0">
         <ion-col class="rlt" col-4 *ngFor="let place of limitPlace(popularPlaces)" (click)="viewPlace(place.id)">
-          <img class="round" [src]="'http://127.0.0.1:8000/storage/app/public/image/w_328,h_166/' + place.images[0].file"
+          <img class="round" [src]="env.url + 'storage/app/public/image/w_328,h_166/' + place.images[0].file"
             alt="">
           <div class="item-rating">{{ place.rating }}</div>
           <div class="text-md strong">{{ place.name }}</div>
