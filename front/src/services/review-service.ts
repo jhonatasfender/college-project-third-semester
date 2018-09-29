@@ -1,5 +1,5 @@
-import {Injectable} from "@angular/core";
-import {REVIEWS} from "./mock-reviews";
+import { Injectable } from "@angular/core";
+import { REVIEWS } from "./mock-reviews";
 
 @Injectable()
 export class ReviewService {

@@ -14,16 +14,9 @@
 <ion-content padding class="collections">
   <ion-list *ngIf="!visibleEdit">
     <ion-item-sliding *ngFor="let collection of collections">
-      <ion-item class="margin-top" [ngStyle]="{'background-image': 'url(' + collection.background + ')'}">
+      <ion-item class="margin-top" [ngStyle]="{'background-image': 'url(' + collection.background + ')'}" (click)="goToCollection(collection.id)">
         <div class="item-info">
-          <ion-icon class="bookmark-icon" name="bookmark" color="primary" [hidden]="!collection.bookmarked" (click)="addBookMark(collection)"></ion-icon>
-          <ion-icon class="bookmark-icon" name="bookmark-outline" color="light" [hidden]="collection.bookmarked"
-            (click)="addBookMark(collection)"></ion-icon>
-          <div class="text-sm light" (click)="goToCollection(collection.id)">
-            {{ collection.num_places }} PLACE &bull;
-            {{ collection.num_bookmarks }} BOOKMARKS
-          </div>
-          <h3 class="light" (click)="goToCollection(collection.id)">{{ collection.name }}</h3>
+          <h3 class="light">{{ collection.name }}</h3>
         </div>
       </ion-item>
       <ion-item-options side="left">

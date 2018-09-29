@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
-import {ReviewService} from '../../services/review-service';
-import {PlaceDetailPage} from '../place-detail/place-detail';
+import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { ReviewService } from '../../services/review-service';
+import { PlaceDetailPage } from '../place-detail/place-detail';
 
 /*
  Generated class for the LoginPage page.
@@ -16,13 +16,16 @@ import {PlaceDetailPage} from '../place-detail/place-detail';
 export class FeedPage {
   public reviews: any;
 
-  constructor(public nav: NavController, public reviewService: ReviewService) {
+  constructor(
+    public nav: NavController,
+    public reviewService: ReviewService
+  ) {
     // feed
     this.reviews = reviewService.getAll();
   }
 
   // view a place
   viewPlace(id) {
-    this.nav.push(PlaceDetailPage, {id: id});
+    this.nav.push(PlaceDetailPage, { id: id });
   }
 }

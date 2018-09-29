@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
-import {ForgotPasswordPage} from '../forgot-password/forgot-password';
-import {SignUpPage} from '../sign-up/sign-up';
-import {MainTabsPage} from '../main-tabs/main-tabs';
+import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { ForgotPasswordPage } from '../forgot-password/forgot-password';
+import { SignUpPage } from '../sign-up/sign-up';
+import { MainTabsPage } from '../main-tabs/main-tabs';
 /*
  Generated class for the LoginPage page.
 
@@ -14,7 +14,7 @@ import {MainTabsPage} from '../main-tabs/main-tabs';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  constructor(public nav: NavController) {}
+  constructor(public nav: NavController) { }
 
   // go to forgot password page
   forgotPwd() {

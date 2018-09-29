@@ -61,7 +61,7 @@ export class HomePage {
     var $imgs = new Array();
     $place.map(function (element) {
       element.images.map(function (img) {
-        if(img.file != undefined) { 
+        if (img.file != undefined) {
           $imgs.push(ENV.url + 'storage/app/public/image/w_400,h_400/' + img.file);
         }
       });
