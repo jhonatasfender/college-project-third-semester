@@ -7,6 +7,7 @@ Esse projeto tem como objetivo para o trabalho da faculdade, utilizamos dados fa
 Logo em seguida acesse a pastas `cd college-project-third-semester`
 
 ### Estrutura do projeto 
+```shell
 ├── backend
 │   ├── app
 │   ├── artisan
@@ -46,7 +47,7 @@ Logo em seguida acesse a pastas `cd college-project-third-semester`
 │   ├── typings
 │   └── www
 └── README.md
-
+```
 ## PHP 
 Acesse o diretório `cd backend/`, estarei partindo do ponto aonde presumo que já tenha o composer instalado em sua maquina, e a versão do PHP necessária para executar o Laravel. 
 
@@ -54,6 +55,55 @@ Acesse o diretório `cd backend/`, estarei partindo do ponto aonde presumo que j
  - Crie uma base de dados com o nome `mysql> create database college-project-third-semester`
  - Execute migation do Laravel `php artisan migrate --seed`
  - E para finalizar `php artisan serve`
+
+### Arquivo de configuração
+Crie um arquivo com o nome `.env` e adicione esse conteudo
+```
+APP_NAME=college-project-third-semester
+APP_ENV=local
+APP_KEY=base64:kscVOpJPtPNtkO3vjqm7ZJYApLf7JF40SaCI3DaB3a8=
+APP_DEBUG=true
+APP_URL=http://localhost
+
+LOG_CHANNEL=stack
+
+##########################################################
+#    COLOQUE CONFORME AS CONFIGURAÇÕES DE SUA MAQUINA    #
+##########################################################
+DB_HOST=127.0.0.1:3307
+DB_DATABASE=college-project-third-semester
+DB_USERNAME=root
+DB_PASSWORD=root
+
+APP_ENV=testing
+DB_CONNECTION=mysql
+
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+QUEUE_DRIVER=sync
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
+PUSHER_APP_CLUSTER=mt1
+
+MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+
+```
 
 ## IONIC
 Nessa parte partirei do ponto aonde você já tem o minimo para executar o ionic.
@@ -63,6 +113,15 @@ Nessa parte partirei do ponto aonde você já tem o minimo para executar o ionic
 
 Caso deseje executar o aplicativo no Android
 
- - Execute o comando `ionic cordova run --prod --device --optimizejs
-`
+ - Execute o comando `ionic cordova run --prod --device --optimizejs`
+
+### Arquivo de configuração
+Crie um arquivo com o nome `environment.ts` e adicione esse conteudo
+```ts
+export const ENV = {
+  mode: 'Production',
+  url: 'http://jonatas.maxcsi.com.br/'
+}
+```
+
 
