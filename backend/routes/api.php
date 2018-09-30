@@ -25,4 +25,9 @@ Route::middleware('auth:api')
     );
 
 Route::resource('categories', 'API\CategoriesController');
+
+Route::get(
+    'reviews',
+    'API\ProductsController@reviews'
+)->name('products.reviews');
 Route::resource('products', 'API\ProductsController');

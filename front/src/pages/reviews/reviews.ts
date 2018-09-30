@@ -15,8 +15,15 @@ import {ReviewService} from '../../services/review-service';
 export class ReviewsPage {
   public reviews: any;
 
-  constructor(public nav: NavController, public reviewService: ReviewService) {
+  constructor(
+    public nav: NavController, 
+    public reviewService: ReviewService
+  ) {
     // feed
     this.reviews = reviewService.getAll();
+    console.log(this.reviews);
+    if(this.reviews.length == 0) {
+      this.reviews.push(reviewService.nextResult());
+    }
   }
 }

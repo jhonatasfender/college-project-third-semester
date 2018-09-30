@@ -2,14 +2,22 @@ import { Injectable } from "@angular/core";
 import { PLACES } from "./mock-places";
 import { HttpClient } from '@angular/common/http';
 import { ENV } from '@app/env';
+import { LoadingController } from 'ionic-angular';
 
 @Injectable()
 export class PlaceService {
   private places: any;
 
-  constructor(public http: HttpClient) {
+  constructor(
+    public http: HttpClient,
+    public loadingCtrl: LoadingController
+  ) {
     this.places = PLACES;
     if (!PLACES.length) {
+      let loading = this.loadingCtrl.create({
+        content: 'Carregando os produtos!'
+      });
+      loading.present();
       this.http.get(
         ENV.url + 'api/products', {
           headers: {
@@ -25,8 +33,10 @@ export class PlaceService {
             const place = data[i];
             this.places.push(place)
           }
+          loading.dismiss();
         }, err => {
           console.log(err);
+          loading.dismiss();
         });
     }
   }

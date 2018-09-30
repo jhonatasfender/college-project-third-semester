@@ -12,20 +12,11 @@
 
 <ion-content class=" common-bg">
 
-  <div class="button-set set-2">
-    <button  ion-button color="primary" >
-      Local Feed
-    </button>
-    <button  ion-button color="light" >
-      My Feed
-    </button>
-  </div>
-
   <ion-list class="list-no-border">
 
     <ion-item *ngFor="let review of reviews" text-wrap class="margin-bottom">
-      <div class="item-header border-bottom" (click)="viewPlace(review.place.id)">
-        <img src="{{ review.place.photo}}" class="pull-left item-avatar" alt="">
+      <div class="item-header border-bottom">
+        <img src="{{env.url}}storage/app/public/image/w_480,h_300/{{ review.place.photo}}" class="pull-left item-avatar" alt="">
         <div class="pull-left">
           <h3>{{ review.place.name }}</h3>
           <div class="secondary uppercase text-sm">{{ review.place.district }}, {{ review.place.city }}</div>
@@ -34,21 +25,20 @@
       </div>
       <div>
         <div class="item-header">
-          <img src="{{ review.author.profile_picture}}" class="pull-left item-avatar profile-picture" alt="">
+          <img src="{{env.url}}storage/app/public/image/w_200,h_200/{{ review.author.profile_picture}}" class="pull-left item-avatar profile-picture" alt="">
           <div class="pull-left">
             <h3>{{ review.author.username }}</h3>
-            <div class="secondary uppercase text-sm">{{ review.author.num_reviews }} Reviews, {{
-              review.author.num_folowers }} Follower
+            <div class="secondary uppercase text-sm">
+              {{ review.author.num_reviews }} Reviews, {{review.author.num_folowers }} Seguidores
             </div>
           </div>
         </div>
         <div class="clear"></div>
       </div>
-
       <div>
         <div class="pull-left secondary text-sm">{{ review.time }}</div>
         <div class="pull-right secondary text-sm">
-          RATED
+          AVALIADO
           <span class="rating">
             {{ review.rating }}
           </span>
@@ -62,21 +52,17 @@
       </div>
 
       <div class="post-images">
-        <img *ngFor="let photo of review.photos" src="{{ photo.thumb }}">
+        <img *ngFor="let photo of review.photos" src="{{env.url}}storage/app/public/image/w_256,h_256/{{ photo.image }}">
       </div>
 
       <div>
         <div class="pull-left action-buttons">
-          <ion-icon name="md-heart-outline" color="danger"  [hidden]="!review.liked"></ion-icon>
-          <ion-icon name="md-heart-outline" color="secondary"  [hidden]="review.liked"></ion-icon>
-          <ion-icon name="ios-chatboxes-outline" color="danger"  [hidden]="!review.commented"></ion-icon>
-          <ion-icon name="ios-chatboxes-outline" color="secondary"  [hidden]="review.commented"></ion-icon>
           <ion-icon name="md-share" color="secondary" ></ion-icon>
         </div>
 
         <div class="pull-right uppercase secondary text-sm">
           {{ review.num_likes }} likes &bull;
-          {{ review.num_comments }} comments
+          {{ review.num_comments }} comentários
         </div>
 
         <div class="clear"></div>
@@ -84,4 +70,7 @@
 
     </ion-item>
   </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

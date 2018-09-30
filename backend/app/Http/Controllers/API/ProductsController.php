@@ -105,17 +105,39 @@ class ProductsController extends Controller
      */
     public function reviews()
     {
+        $return = [];
         $this->faker = \Faker\Factory::create('pt_BR');
-        $data = new \stdClass;
-        // $data->id = 
-        // $data->rating = 
-        // $data->text = 
-        // $data->time = 
-        // $data->liked = 
-        // $data->commented = 
-        // $data->num_likes = 
-        // $data->num_comments = 
-        // $data->photos = [];
+        for ($j = 0; $j < 2; $j++) {
+            $data = new \stdClass;
+            $data->id = $this->faker->numberBetween(0, 1000);
+            $data->rating = $this->faker->randomFloat(2, 0, 10);
+            $data->text = $this->faker->sentence(50);
+            $data->time = $this->faker->time;
+            $data->liked = $this->faker->boolean;
+            $data->commented = $this->faker->boolean;
+            $data->num_likes = $this->faker->numberBetween(0, 100);
+            $data->num_comments = $this->faker->numberBetween(0, 100);
+            $data->photos = [];
+            for ($i = 0; $i < $this->faker->numberBetween(0, 10); $i++) {
+                $photos = new \stdClass;
+                $photos->image = $this->faker->image(storage_path('app/public/image'), 480, 300, null, false);
+                $data->photos[] = $photos;
+            }
 
+            $data->author = new \stdClass;
+            $data->author->id = $this->faker->numberBetween(0, 1000);
+            $data->author->username = $this->faker->unique()->name;
+            $data->author->profile_picture = $this->faker->image(storage_path('app/public/image'), 200, 200, null, false);
+            $data->author->num_reviews = $this->faker->numberBetween(0, 100);
+            $data->author->num_folowers = $this->faker->numberBetween(0, 100);
+            $data->place = new \stdClass;
+            $data->place->id = $this->faker->numberBetween(0, 1000);
+            $data->place->name = $this->faker->unique()->word() . " - " . $this->faker->unique()->name;
+            $data->place->district = $this->faker->streetAddress;
+            $data->place->city = $this->faker->city;
+            $data->place->photo = $this->faker->image(storage_path('app/public/image'), 256, 256, null, false);
+            $return[] = $data;
+        }
+        return $return;
     }
 }
