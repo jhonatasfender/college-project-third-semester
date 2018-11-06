@@ -2,12 +2,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { App, NavController } from 'ionic-angular';
 import { CollectionService } from '../../services/collection-service';
 
-/*
- Generated class for the LoginPage page.
-
- See http://ionicframework.com/docs/v2/components/#navigation for more info on
- Ionic pages and navigation.
- */
 @Component({
   selector: 'page-add-edit-collections',
   templateUrl: 'add-edit-collections.html'

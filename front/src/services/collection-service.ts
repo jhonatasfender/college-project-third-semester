@@ -1,20 +1,24 @@
-import { Injectable } from "@angular/core";
+import { Inject, Injectable } from "@angular/core";
 import { COLLECTIONS } from "./mock-collections";
 import { HttpClient } from '@angular/common/http';
 import { ENV } from '@app/env';
 import { LoadingController } from 'ionic-angular';
+import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
+
+const STORAGE_KEY: string = "collection"
 
 @Injectable()
 export class CollectionService {
   private collections: any;
 
   constructor(
+    @Inject(SESSION_STORAGE) private storage: StorageService,
     public http: HttpClient,
     public loadingCtrl: LoadingController
   ) {
-    this.collections = COLLECTIONS;
+    this.collections = this.storage.get(STORAGE_KEY) || COLLECTIONS;
 
-    if (!COLLECTIONS.length) {
+    if (!this.collections.length) {
       let loading = this.loadingCtrl.create({
         content: 'Carregando as categorias!'
       });
@@ -34,6 +38,8 @@ export class CollectionService {
             category.background = ENV.url + "storage/app/public/image/w_328,h_166/" + category.icon_image;
             this.collections.push(category)
           }
+
+          this.storage.set(STORAGE_KEY, this.collections);
 
           loading.dismiss();
         }, err => {
@@ -57,10 +63,13 @@ export class CollectionService {
   }
 
   public update(collection) {
-    this.http.post(
+    this.http.put(
       ENV.url + "api/categories/" + collection.id,
-      JSON.stringify(collection), {
+      JSON.stringify({
+        "name": collection.name
+      }), {
         headers: {
+          "Access-Control-Allow-Methods": "*",
           "Access-Control-Allow-Origin": "*",
           "Accept": "application/json",
           "Content-Type": "application/json"

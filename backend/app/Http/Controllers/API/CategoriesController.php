@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoriesRequest;
 use App\Models\Categories;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class CategoriesController extends Controller
 {
@@ -43,11 +44,11 @@ class CategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CategoriesRequest  $request
      * @param  \App\Categories  $categories
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categories $categories)
+    public function update(CategoriesRequest $request, Categories $categories)
     {
         $categories->update($request->all());
 

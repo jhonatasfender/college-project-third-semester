@@ -44,7 +44,7 @@
                                             <input type="text" class="form-control" name="name" id="name" value="{{ $category->name }}">
                                         </div>
                                         <div class="form-group">
-                                            <input type="file" name="file" accept="image/*"></span>
+                                            <input type="file" name="icon_image" accept="image/*"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">

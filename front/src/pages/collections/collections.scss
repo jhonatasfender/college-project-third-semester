@@ -1,24 +1,46 @@
-page-collections,
-.collections {
-
-  ion-item {
-    padding: 0;
-    border-radius: 3px;
-
-    .item-inner {
-      position: relative;
-      padding: 40px 10px;
-      background: rgba(0, 0, 0, 0.6);
-
-      .bookmark-icon {
-        position: absolute;
-        right: 10px;
-        top: 10px;
+page-collections {
+  ion-header {
+    ion-navbar {
+      div {
+        display: flex;
       }
 
-      h3 {
-        margin: 8px 0;
-        font-size: 1.5em;
+      button {
+        background: none;
+        font-size: 27px;
+        color: white;
+        margin-right: 3%;
+      }
+    }
+  }
+
+  .collections {
+    ion-item {
+      padding: 0;
+      border-radius: 3px;
+
+      .item-inner {
+        position: relative;
+        padding: 40px 10px;
+        background: rgba(0, 0, 0, 0.6);
+
+        .bookmark-icon {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+        }
+
+        h3 {
+          margin: 8px 0;
+          font-size: 1.5em;
+        }
+      }
+
+      &.input-ion-item {
+        div {
+          padding: 0;
+          background: white;
+        }
       }
     }
   }
